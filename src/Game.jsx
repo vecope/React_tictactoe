@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "./Board";
+import Info from "./Info";
 
 class Game extends React.Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ class Game extends React.Component {
 	}
 
 	jumpTo(step, real) {
-		console.log("jumping to: " + step);
+		// console.log("jumping to: " + step);
 		this.setState({
 			stepNumber: step,
 			currentStep: real,
@@ -36,7 +37,7 @@ class Game extends React.Component {
 			stepNumber: newStepNumber
 		});
 
-		console.log(newHistory);
+		// console.log(newHistory);
 	}
 
 	handleClick(i) {
@@ -142,27 +143,24 @@ class Game extends React.Component {
 			lastBoxNumber = lastBoxNumber.concat(winCas);
 		}
 
+		let infoObj = {
+			status: status,
+			stepNumber: this.state.stepNumber,
+			current: this.state.currentStep,
+			bolder: bolder,
+			last: last,
+			toggle: toggle,
+			moves: moves
+		};
+
 		return (
 			<div className="game">
-				<div className="game-board">
 					<Board
 						squares={current.squares}
 						bold={lastBoxNumber}
 						onClick={i => this.handleClick(i)}
 					/>
-				</div>
-				<div className="game-info">
-					<div>{status}</div>
-					<div>
-						Step: {this.state.stepNumber} Current:{" "}
-						{this.state.currentStep}
-					</div>
-					<div>{bolder}</div>
-					<div>Last Move</div>
-					<div>{last}</div>
-					<div>{toggle}</div>
-					<ol>{moves}</ol>
-				</div>
+				<Info obj= {infoObj}/>
 			</div>
 		);
 	}

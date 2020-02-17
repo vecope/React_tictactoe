@@ -4,7 +4,7 @@ import Square from "./Square";
 
 class Board extends React.Component {
   renderSquare(i) {
-  	console.log(this.props.bold)
+    // console.log(this.props.bold)
     return (
       <Square
         index={i}
@@ -30,9 +30,12 @@ class Board extends React.Component {
         </div>
       );
     }
-    return <div>{squares}</div>;
+    return (
+      <div className="game-board">
+        <div>{squares}</div>
+      </div>
+    );
   }
 }
-
 
 export default Board;
